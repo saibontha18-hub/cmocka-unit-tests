@@ -5,11 +5,8 @@
 #include <stdint.h>
 
 /*
- * ring_buffer.h - Fixed-capacity byte ring (circular) buffer, C99.
- *
- * Single-producer / single-consumer friendly; no dynamic allocation.
- * The caller provides the storage array. All functions return 0 on
- * success, -1 on failure (full on put, empty on get).
+ * Fixed-capacity byte ring buffer. Caller provides the storage array,
+ * so there's no malloc anywhere. Returns 0 on success, -1 on failure.
  */
 
 typedef struct
@@ -23,8 +20,8 @@ typedef struct
 
 void rb_init(ring_buffer_t *rb, uint8_t *storage, size_t capacity);
 
-int rb_put(ring_buffer_t *rb, uint8_t byte);       /* 0 ok, -1 full */
-int rb_get(ring_buffer_t *rb, uint8_t *byte);     /* 0 ok, -1 empty */
+int rb_put(ring_buffer_t *rb, uint8_t byte);
+int rb_get(ring_buffer_t *rb, uint8_t *byte);
 
 size_t rb_count(const ring_buffer_t *rb);
 size_t rb_capacity(const ring_buffer_t *rb);

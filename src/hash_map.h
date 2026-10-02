@@ -5,24 +5,18 @@
 #include <stdint.h>
 
 /*
- * hash_map.h - Fixed-capacity string-keyed hash map, C99.
- *
- * Open addressing with linear probing and tombstones. No dynamic
- * allocation: the caller provides the entry storage array, just like
- * ring_buffer. Keys are hashed with FNV-1a (32-bit).
- *
- * All functions return 0 on success, -1 on failure (table full on
- * insert of a new key, missing key on lookup/delete, over-long key).
- * Inserting an existing key overwrites its value.
+ * Fixed-capacity string-keyed hash map. Open addressing, linear probing,
+ * tombstones on delete; FNV-1a for hashing. Caller provides the entry
+ * storage, so no malloc. Inserting an existing key overwrites it.
  */
 
 #define HM_KEY_MAX 23  /* longest key, not counting the NUL terminator */
 
 typedef enum
 {
-    HM_EMPTY,     /* never used */
-    HM_OCCUPIED,  /* holds a live key/value pair */
-    HM_DELETED    /* tombstone: keep probing past it */
+    HM_EMPTY,
+    HM_OCCUPIED,
+    HM_DELETED    /* tombstone: probes must skip past these */
 } hm_state_t;
 
 typedef struct

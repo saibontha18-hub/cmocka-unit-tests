@@ -59,10 +59,9 @@ static void test_overflow_rejected(void **state)
         assert_int_equal(rb_put(&rb, (uint8_t) i), 0);
 
     assert_true(rb_is_full(&rb));
-    assert_int_equal(rb_put(&rb, 0xFF), -1); /* must not overwrite */
+    assert_int_equal(rb_put(&rb, 0xFF), -1);
     assert_int_equal(rb_count(&rb), CAP);
 
-    /* contents intact after rejected put */
     for (i = 0; i < CAP; i++) {
         assert_int_equal(rb_get(&rb, &out), 0);
         assert_int_equal(out, (uint8_t) i);
@@ -75,7 +74,7 @@ static void test_underflow_rejected(void **state)
     (void) state;
 
     assert_int_equal(rb_get(&rb, &out), -1);
-    assert_int_equal(out, 0x5A); /* untouched on failure */
+    assert_int_equal(out, 0x5A);
 }
 
 static void test_wrap_around(void **state)

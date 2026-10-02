@@ -4,10 +4,10 @@
 
 uint32_t hm_fnv1a(const char *key)
 {
-    uint32_t h = 2166136261u; /* FNV offset basis */
+    uint32_t h = 2166136261u;
     while (*key) {
         h ^= (uint8_t) *key++;
-        h *= 16777619u;       /* FNV prime */
+        h *= 16777619u;
     }
     return h;
 }
@@ -29,11 +29,9 @@ static int key_ok(const char *key)
 }
 
 /*
- * Probe for `key`. On return:
- *   - *slot points at the entry holding the key, or at the slot where a new
- *     key should be inserted (first tombstone if any, else first empty slot).
- *   - returns 1 if the key was found, 0 otherwise.
- * Never loops more than `capacity` steps, so it always terminates.
+ * Find `key`. Returns 1 and sets *slot to its entry if found; otherwise
+ * returns 0 and sets *slot to where a new key goes (first tombstone seen,
+ * else first empty slot). Bounded by `capacity`, so it always terminates.
  */
 static int probe(const hash_map_t *m, const char *key, size_t *slot)
 {
@@ -80,11 +78,11 @@ int hm_put(hash_map_t *m, const char *key, int32_t value)
         return -1;
 
     if (probe(m, key, &slot)) {
-        m->entries[slot].value = value; /* overwrite */
+        m->entries[slot].value = value;
         return 0;
     }
     if (m->count == m->capacity)
-        return -1; /* full: no room for a new key */
+        return -1;
 
     strncpy(m->entries[slot].key, key, HM_KEY_MAX);
     m->entries[slot].key[HM_KEY_MAX] = '\0';
@@ -117,7 +115,7 @@ int hm_delete(hash_map_t *m, const char *key)
         return -1;
 
     if (probe(m, key, &slot)) {
-        m->entries[slot].state = HM_DELETED; /* tombstone */
+        m->entries[slot].state = HM_DELETED;
         m->count--;
         return 0;
     }

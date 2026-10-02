@@ -12,7 +12,7 @@ void rb_init(ring_buffer_t *rb, uint8_t *storage, size_t capacity)
 int rb_put(ring_buffer_t *rb, uint8_t byte)
 {
     if (rb->count == rb->capacity)
-        return -1; /* full */
+        return -1;
 
     rb->buf[rb->tail] = byte;
     rb->tail = (rb->tail + 1) % rb->capacity;
@@ -23,7 +23,7 @@ int rb_put(ring_buffer_t *rb, uint8_t byte)
 int rb_get(ring_buffer_t *rb, uint8_t *byte)
 {
     if (rb->count == 0)
-        return -1; /* empty */
+        return -1;
 
     *byte = rb->buf[rb->head];
     rb->head = (rb->head + 1) % rb->capacity;

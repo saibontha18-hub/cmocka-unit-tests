@@ -49,7 +49,7 @@ static void test_overwrite_keeps_count(void **state)
     (void) state;
 
     assert_int_equal(hm_put(&hm, "alpha", 1), 0);
-    assert_int_equal(hm_put(&hm, "alpha", 42), 0); /* overwrite */
+    assert_int_equal(hm_put(&hm, "alpha", 42), 0);
     assert_int_equal(hm_count(&hm), 1);
 
     assert_int_equal(hm_get(&hm, "alpha", &v), 0);
@@ -63,7 +63,7 @@ static void test_missing_key(void **state)
 
     assert_int_equal(hm_put(&hm, "alpha", 1), 0);
     assert_int_equal(hm_get(&hm, "gamma", &v), -1);
-    assert_int_equal(v, 0x5A5A5A5A); /* untouched on failure */
+    assert_int_equal(v, 0x5A5A5A5A);
 }
 
 static void test_delete(void **state)
@@ -78,12 +78,10 @@ static void test_delete(void **state)
     assert_int_equal(hm_count(&hm), 1);
     assert_int_equal(hm_get(&hm, "alpha", &v), -1);
 
-    /* deleting twice fails */
+    /* deleting twice fails, and so does deleting a key that was never there */
     assert_int_equal(hm_delete(&hm, "alpha"), -1);
-    /* deleting a never-inserted key fails */
     assert_int_equal(hm_delete(&hm, "gamma"), -1);
 
-    /* the other key is unaffected */
     assert_int_equal(hm_get(&hm, "beta", &v), 0);
     assert_int_equal(v, 2);
 }
@@ -95,7 +93,7 @@ static void test_delete_then_reinsert(void **state)
 
     assert_int_equal(hm_put(&hm, "alpha", 1), 0);
     assert_int_equal(hm_delete(&hm, "alpha"), 0);
-    assert_int_equal(hm_put(&hm, "alpha", 7), 0); /* tombstone reused */
+    assert_int_equal(hm_put(&hm, "alpha", 7), 0);
     assert_int_equal(hm_count(&hm), 1);
     assert_int_equal(hm_get(&hm, "alpha", &v), 0);
     assert_int_equal(v, 7);
@@ -126,8 +124,8 @@ static void test_table_full(void **state)
 }
 
 /*
- * 'aa', 'ai' and 'aq' all hash to the same slot with capacity 8
- * (FNV-1a % 8 == 7, verified offline), so they exercise linear probing.
+ * "aa", "ai" and "aq" all land in the same slot with capacity 8 (I checked
+ * the hashes by hand), so inserting all three forces linear probing.
  */
 static void test_collisions(void **state)
 {

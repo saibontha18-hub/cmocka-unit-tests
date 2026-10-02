@@ -1,5 +1,7 @@
 # cmocka-unit-tests
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE) [![Language](https://img.shields.io/badge/language-C-blue.svg)](src/) [![Tests](https://img.shields.io/badge/tests-16%20passing-brightgreen.svg)](#)
+
 Tiny examples of unit-testing embedded-style C with the [CMocka](https://cmocka.org) framework. Both modules are written in strict C99 with no dynamic allocation — the kind of building blocks that show up in firmware.
 
 ## Modules

@@ -26,8 +26,6 @@ ctest --test-dir build --output-on-failure
 
 Expected output ends with `100% tests passed, 0 tests failed`.
 
-For CI, the same three commands work on any runner with the prerequisites installed.
-
 ## Files
 
 - `src/ring_buffer.h`, `src/ring_buffer.c` — ring buffer module

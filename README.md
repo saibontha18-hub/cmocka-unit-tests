@@ -38,6 +38,12 @@ Actions (`.github/workflows/ci.yml`) — the CI badge at the top tracks it.
 - `tests/test_ring_buffer.c`, `tests/test_hash_map.c` — CMocka test suites
 - `CMakeLists.txt` — builds both libraries, both test binaries, and registers them with CTest
 
+## Screenshots
+
+Full test run from my machine — 16/16 passing:
+
+![CTest run of the ring buffer and hash map suites, all 16 tests passing](docs/screenshots/tests.png)
+
 ## License
 
 MIT

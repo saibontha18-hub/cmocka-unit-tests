@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(ring_buffer C)
+project(c_data_structures C)
 
 set(CMAKE_C_STANDARD 99)
 set(CMAKE_C_STANDARD_REQUIRED ON)
@@ -7,8 +7,21 @@ set(CMAKE_C_EXTENSIONS OFF)
 
 add_compile_options(-Wall -Wextra -Werror)
 
-find_library(CMOCKA_LIB cmocka REQUIRED)
-find_path(CMOCKA_INCLUDE_DIR cmocka.h REQUIRED)
+# find_library(REQUIRED) fails with a cryptic dump; say how to fix it instead.
+find_library(CMOCKA_LIB cmocka)
+if(NOT CMOCKA_LIB)
+    message(FATAL_ERROR
+        "CMocka library not found.\n"
+        "  Debian/Ubuntu: sudo apt install libcmocka-dev\n"
+        "  Fedora:        sudo dnf install libcmocka-devel\n"
+        "  macOS:         brew install cmocka\n"
+        "  From source:   https://cmocka.org (see the CI workflow for a full recipe)")
+endif()
+find_path(CMOCKA_INCLUDE_DIR cmocka.h)
+if(NOT CMOCKA_INCLUDE_DIR)
+    message(FATAL_ERROR
+        "cmocka.h not found — install the CMocka development package for your OS (see above).")
+endif()
 
 add_library(ringbuf src/ring_buffer.c)
 target_include_directories(ringbuf PUBLIC src)

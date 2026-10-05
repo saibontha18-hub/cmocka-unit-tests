@@ -1,6 +1,6 @@
 # cmocka-unit-tests
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE) [![Language](https://img.shields.io/badge/language-C-blue.svg)](src/) [![Tests](https://img.shields.io/badge/tests-16%20passing-brightgreen.svg)](#)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE) [![Language](https://img.shields.io/badge/language-C-blue.svg)](src/) [![CI](https://github.com/saibontha18-hub/cmocka-unit-tests/actions/workflows/ci.yml/badge.svg)](https://github.com/saibontha18-hub/cmocka-unit-tests/actions/workflows/ci.yml)
 
 Tiny examples of unit-testing embedded-style C with the [CMocka](https://cmocka.org) framework. Both modules are written in strict C99 with no dynamic allocation — the kind of building blocks that show up in firmware.
 
@@ -27,6 +27,9 @@ ctest --test-dir build --output-on-failure
 ```
 
 Expected output ends with `100% tests passed, 0 tests failed`.
+
+Every push and pull request runs the same build and test through GitHub
+Actions (`.github/workflows/ci.yml`) — the CI badge at the top tracks it.
 
 ## Files
 

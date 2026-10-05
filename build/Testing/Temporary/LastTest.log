@@ -1,0 +1,71 @@
+Start testing: Oct 05 00:56 UTC
+----------------------------------------------------------
+1/2 Testing: ring_buffer
+1/2 Test: ring_buffer
+Command: "/tmp/cmocka-fix/build/test_ring_buffer"
+Directory: /tmp/cmocka-fix/build
+"ring_buffer" start time: Oct 05 00:56 UTC
+Output:
+----------------------------------------------------------
+[==========] tests: Running 6 test(s).
+[ RUN      ] test_init_state
+[       OK ] test_init_state
+[ RUN      ] test_put_get_fifo
+[       OK ] test_put_get_fifo
+[ RUN      ] test_overflow_rejected
+[       OK ] test_overflow_rejected
+[ RUN      ] test_underflow_rejected
+[       OK ] test_underflow_rejected
+[ RUN      ] test_wrap_around
+[       OK ] test_wrap_around
+[ RUN      ] test_fill_drain_cycle
+[       OK ] test_fill_drain_cycle
+[==========] tests: 6 test(s) run.
+[  PASSED  ] 6 test(s).
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"ring_buffer" end time: Oct 05 00:56 UTC
+"ring_buffer" time elapsed: 00:00:00
+----------------------------------------------------------
+
+2/2 Testing: hash_map
+2/2 Test: hash_map
+Command: "/tmp/cmocka-fix/build/test_hash_map"
+Directory: /tmp/cmocka-fix/build
+"hash_map" start time: Oct 05 00:56 UTC
+Output:
+----------------------------------------------------------
+[==========] tests: Running 10 test(s).
+[ RUN      ] test_init_state
+[       OK ] test_init_state
+[ RUN      ] test_insert_lookup
+[       OK ] test_insert_lookup
+[ RUN      ] test_overwrite_keeps_count
+[       OK ] test_overwrite_keeps_count
+[ RUN      ] test_missing_key
+[       OK ] test_missing_key
+[ RUN      ] test_delete
+[       OK ] test_delete
+[ RUN      ] test_delete_then_reinsert
+[       OK ] test_delete_then_reinsert
+[ RUN      ] test_table_full
+[       OK ] test_table_full
+[ RUN      ] test_collisions
+[       OK ] test_collisions
+[ RUN      ] test_collision_delete_probing
+[       OK ] test_collision_delete_probing
+[ RUN      ] test_key_limits
+[       OK ] test_key_limits
+[==========] tests: 10 test(s) run.
+[  PASSED  ] 10 test(s).
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"hash_map" end time: Oct 05 00:56 UTC
+"hash_map" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Oct 05 00:56 UTC

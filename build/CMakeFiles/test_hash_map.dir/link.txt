@@ -1,1 +1,0 @@
-/usr/bin/cc CMakeFiles/test_hash_map.dir/tests/test_hash_map.c.o -o test_hash_map  libhashmap.a /usr/lib/x86_64-linux-gnu/libcmocka.so 

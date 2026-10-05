@@ -1,7 +1,0 @@
-/tmp/cmocka-fix/build/CMakeFiles/ringbuf.dir
-/tmp/cmocka-fix/build/CMakeFiles/hashmap.dir
-/tmp/cmocka-fix/build/CMakeFiles/test_ring_buffer.dir
-/tmp/cmocka-fix/build/CMakeFiles/test_hash_map.dir
-/tmp/cmocka-fix/build/CMakeFiles/test.dir
-/tmp/cmocka-fix/build/CMakeFiles/edit_cache.dir
-/tmp/cmocka-fix/build/CMakeFiles/rebuild_cache.dir
